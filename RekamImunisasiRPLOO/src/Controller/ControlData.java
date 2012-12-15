@@ -145,8 +145,8 @@ public class ControlData {
         conn.commit();
         return namanya;
     }
-    
-  public String cariKodeBidan(String Nama) throws SQLException {
+
+    public String cariKodeBidan(String Nama) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
         String namanya = "";
@@ -161,6 +161,7 @@ public class ControlData {
         conn.commit();
         return namanya;
     }
+
     public String cariBidan(String kode) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
@@ -193,12 +194,12 @@ public class ControlData {
         while (rset.next()) {
             RekamImunisasiData pasdt = new RekamImunisasiData();
             PasienData pd = new PasienData();
-            ImunisasiDT imun=new ImunisasiDT();
+            ImunisasiDT imun = new ImunisasiDT();
             pd.setNamaPasien(rset.getString(1));
             pd.setNamaOrangTua(rset.getString(3));
             pasdt.setPasien(pd);
             pasdt.setIdRekamImun(rset.getString(2));
-            
+
             pasdt.setTanggal(rset.getString(5));
             imun.setNamaImunisasi(rset.getString(4));
             pasdt.setImun(imun);
@@ -253,8 +254,8 @@ public class ControlData {
         if (result.next()) {
             namanya = result.getString(1);
         }
-        if ((namanya.equalsIgnoreCase("")==true)) {
-            return namanya="1";
+        if ((namanya.equalsIgnoreCase("") == true)) {
+            return namanya = "1";
         }
         conn.commit();
         return namanya;
@@ -315,8 +316,8 @@ public class ControlData {
         }
         return pasien;
     }
-    
-     public List<RekamImunisasiData> getAllImunisasi(String date) throws SQLException {
+
+    public List<RekamImunisasiData> getAllImunisasi(String date) throws SQLException {
         PreparedStatement psmt = null;
         ResultSet rset = null;
         conn.setAutoCommit(false);
@@ -329,11 +330,11 @@ public class ControlData {
         List<RekamImunisasiData> pasien = new ArrayList<RekamImunisasiData>();
         while (rset.next()) {
             RekamImunisasiData pasdt = new RekamImunisasiData();
-            PasienData pd=new PasienData();
+            PasienData pd = new PasienData();
             pd.setIdPasien(rset.getString(1));
             pd.setNamaPasien(rset.getString(2));
             pasdt.setPasien(pd);
-            ImunisasiDT idt=new ImunisasiDT();
+            ImunisasiDT idt = new ImunisasiDT();
             idt.setNamaImunisasi(rset.getString(3));
             pasdt.setImun(idt);
             pasdt.setTanggal(rset.getString(4));
@@ -342,7 +343,8 @@ public class ControlData {
         conn.commit();
         return pasien;
     }
-      public List<RekamImunisasiData> getAllKirimSMS(String date) throws SQLException {
+
+    public List<RekamImunisasiData> getAllKirimSMS(String date) throws SQLException {
         PreparedStatement psmt = null;
         ResultSet rset = null;
         conn.setAutoCommit(false);
@@ -357,13 +359,13 @@ public class ControlData {
         List<RekamImunisasiData> pasien = new ArrayList<RekamImunisasiData>();
         while (rset.next()) {
             RekamImunisasiData pasdt = new RekamImunisasiData();
-            PasienData pd=new PasienData();
+            PasienData pd = new PasienData();
             pd.setIdPasien(rset.getString(1));
             pd.setNamaPasien(rset.getString(2));
             pd.setNamaOrangTua(rset.getString(3));
             pd.setNotelpOrtu(rset.getString(4));
             pasdt.setPasien(pd);
-            ImunisasiDT idt=new ImunisasiDT();
+            ImunisasiDT idt = new ImunisasiDT();
             idt.setNamaImunisasi(rset.getString(5));
             pasdt.setImun(idt);
             pasien.add(pasdt);
@@ -371,7 +373,8 @@ public class ControlData {
         conn.commit();
         return pasien;
     }
-      public String nomorBaru(String code) throws SQLException {
+
+    public String nomorBaru(String code) throws SQLException {
         PreparedStatement stmt = null;
         int cari = 0;
         ResultSet result = null;
@@ -389,7 +392,8 @@ public class ControlData {
         return String.valueOf(cari);
 
     }
-        public String nomorBaruImunisasi(String code) throws SQLException {
+
+    public String nomorBaruImunisasi(String code) throws SQLException {
         PreparedStatement stmt = null;
         int cari = 0;
         ResultSet result = null;
@@ -406,5 +410,22 @@ public class ControlData {
         conn.commit();
         return String.valueOf(cari);
 
+    }
+
+    public String nextImunisasi(String code) throws SQLException {
+        PreparedStatement stmt = null;
+        String cari = "";
+        ResultSet result = null;
+        conn.setAutoCommit(false);
+        String query = "SELECT namaimunisasi from imunisasi where idimunisasi="
+                + "(SELECT idimunisasi from imunisasi where namaimunisasi=?)+1 ";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1, code);
+        result = stmt.executeQuery();
+        if (result.next()) {
+            cari = (result.getString(1));
+        }
+        conn.commit();
+        return cari;
     }
 }

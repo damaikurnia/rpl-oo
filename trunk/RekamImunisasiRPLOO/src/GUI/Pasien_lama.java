@@ -281,11 +281,14 @@ public class Pasien_lama extends javax.swing.JFrame {
         int i = table_cari.getSelectedRow();
         String id = table_cari.getValueAt(i, 0).toString();
         String nama = table_cari.getValueAt(i, 1).toString();
+        String tanggalLahir = table_cari.getValueAt(i, 2).toString();
+        String namaOrtu = table_cari.getValueAt(i, 3).toString();
         RekamPasien rp = new RekamPasien();
         rp.setVisible(true);
         RekamPasien.idpetugasTF.setText(idpetugasTF.getText());
         RekamPasien.idpasienTF.setText(id);
         RekamPasien.namaPasienTF.setText(nama);
+        RekamPasien.namaOrtuTF.setText(namaOrtu);
         rp.tampilTable();
 //        this.dispose();
         disableSeveral();

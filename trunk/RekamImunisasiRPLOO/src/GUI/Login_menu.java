@@ -244,7 +244,7 @@ public class Login_menu extends javax.swing.JFrame {
 //                    this.setEnabled(false);
 
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "error,, wrong username and password\n please try again");
+                    JOptionPane.showMessageDialog(rootPane, "Username dan Password salah.");
                     emptyField();
                     usernameTF.requestFocus();
 
@@ -267,7 +267,7 @@ public class Login_menu extends javax.swing.JFrame {
                     FP.label_Bidan.setText(nama);
 //                    this.setEnabled(false);
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "error,, wrong username and password\n please try again");
+                    JOptionPane.showMessageDialog(rootPane, "Username dan Password salah.");
                     emptyField();
                     usernameTF.requestFocus();
                 }

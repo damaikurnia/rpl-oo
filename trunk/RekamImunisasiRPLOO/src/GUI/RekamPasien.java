@@ -65,7 +65,7 @@ public class RekamPasien extends javax.swing.JFrame {
         namaPasienTF = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         idpetugasTF = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        namaPegawaiTF = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         namaOrtuTF = new javax.swing.JTextField();
 
@@ -281,8 +281,12 @@ public class RekamPasien extends javax.swing.JFrame {
             }
         });
 
+        namaPegawaiTF.setEditable(false);
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("nama Orang Tua");
+
+        namaOrtuTF.setEditable(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -303,7 +307,7 @@ public class RekamPasien extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(idpetugasTF, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(namaPegawaiTF, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(namaPasienTF, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +323,7 @@ public class RekamPasien extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
                         .addComponent(idpetugasTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(namaPegawaiTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(idpasienTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -354,15 +358,15 @@ public class RekamPasien extends javax.swing.JFrame {
             InputRekamImunisasi.idPsienTF.setEnabled(false);
             InputRekamImunisasi.idPetugasTF.setText(idpetugasTF.getText());
             InputRekamImunisasi.idPsienTF.setText(idpasienTF.getText());
-            String baru=ControlData.getKoneksi().nomorBaruImunisasi(idpasienTF.getText());
-               if (baru.equals("null")) {
+            String baru = ControlData.getKoneksi().nomorBaruImunisasi(idpasienTF.getText());
+            if (baru.equals("null")) {
                 baru = "001";
             } else if (baru.length() == 1) {
                 baru = "00" + baru;
             } else if (baru.length() == 2) {
                 baru = "0" + baru;
             }
-            InputRekamImunisasi.idRekamImunTF.setText(idpasienTF.getText()+baru);
+            InputRekamImunisasi.idRekamImunTF.setText(idpasienTF.getText() + baru);
         } catch (Exception ex) {
             Logger.getLogger(RekamPasien.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -373,7 +377,7 @@ public class RekamPasien extends javax.swing.JFrame {
             this.dispose();
             Frame_petugas fp = new Frame_petugas();
             fp.setVisible(true);
-            String nama=ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
+            String nama = ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
             fp.label_petugas.setText(nama);
         } catch (Exception ex) {
             Logger.getLogger(RekamPasien.class.getName()).log(Level.SEVERE, null, ex);
@@ -416,7 +420,7 @@ public class RekamPasien extends javax.swing.JFrame {
     private void idpasienTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idpasienTFKeyReleased
         idpasienTF.getText();
         tampilTable();
-        
+
 
     }//GEN-LAST:event_idpasienTFKeyReleased
 
@@ -467,10 +471,14 @@ public class RekamPasien extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /*
+         * Set the Nimbus look and feel
+         */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -490,7 +498,9 @@ public class RekamPasien extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /*
+         * Create and display the form
+         */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RekamPasien().setVisible(true);
@@ -521,9 +531,9 @@ public class RekamPasien extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     public static javax.swing.JTextField namaOrtuTF;
     public static javax.swing.JTextField namaPasienTF;
+    public static javax.swing.JTextField namaPegawaiTF;
     private javax.swing.JTextField pencarian_TF;
     private javax.swing.JTable rekamImun_table;
     private javax.swing.JTable tabel_cari;

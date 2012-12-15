@@ -6,6 +6,8 @@ package Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -107,7 +109,7 @@ public class ConnMySql {
 //        try {
 //            ConnMySql.getConnections();
 //        } catch (Exception ex) {
-//            Logger.getLogger(ConnOracle.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(ConnMySql.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
 }

@@ -284,13 +284,20 @@ public class Pasien_lama extends javax.swing.JFrame {
         String tanggalLahir = table_cari.getValueAt(i, 2).toString();
         String namaOrtu = table_cari.getValueAt(i, 3).toString();
         RekamPasien rp = new RekamPasien();
-        rp.setVisible(true);
+        String namaPegawai = null;
+        try {
+            namaPegawai = ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(Pasien_lama.class.getName()).log(Level.SEVERE, null, ex);
+        }
         RekamPasien.idpetugasTF.setText(idpetugasTF.getText());
         RekamPasien.idpasienTF.setText(id);
         RekamPasien.namaPasienTF.setText(nama);
         RekamPasien.namaOrtuTF.setText(namaOrtu);
+        RekamPasien.namaPegawaiTF.setText(namaPegawai);
+        rp.setVisible(true);
         rp.tampilTable();
-//        this.dispose();
+        //        this.dispose();
         disableSeveral();
     }//GEN-LAST:event_table_cariMouseClicked
 
@@ -299,7 +306,7 @@ public class Pasien_lama extends javax.swing.JFrame {
         if (a == 0) {
             JOptionPane.showMessageDialog(rootPane, "selesai ");
             this.dispose();
-            Registrasi lm=new Registrasi();
+            Registrasi lm = new Registrasi();
             lm.setVisible(true);
         }
     }//GEN-LAST:event_logout_buttonActionPerformed
@@ -327,10 +334,14 @@ public class Pasien_lama extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /*
+         * Set the Nimbus look and feel
+         */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -350,7 +361,9 @@ public class Pasien_lama extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /*
+         * Create and display the form
+         */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Pasien_lama().setVisible(true);

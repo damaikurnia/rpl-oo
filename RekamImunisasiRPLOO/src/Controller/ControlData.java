@@ -6,7 +6,6 @@ package Controller;
 
 import Connection.ConnMySql;
 import Data.ImunisasiDT;
-//import Connection.ConnOracle;
 import Data.PasienData;
 import Data.RekamImunisasiData;
 import java.sql.Connection;
@@ -117,65 +116,65 @@ public class ControlData {
     public String cariPegawai(String kode) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String namaPegawai = "";
         conn.setAutoCommit(false);
         String query = "SELECT namapegawai from pegawai where idpegawai=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, kode);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            namaPegawai = result.getString(1);
         }
         conn.commit();
-        return namanya;
+        return namaPegawai;
     }
 
     public String cariKodePegawai(String Nama) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String kodePegawai = "";
         conn.setAutoCommit(false);
         String query = "SELECT idpegawai from pegawai where namapegawai=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, Nama);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            kodePegawai = result.getString(1);
         }
         conn.commit();
-        return namanya;
+        return kodePegawai;
     }
 
     public String cariKodeBidan(String Nama) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String kodeBidan = "";
         conn.setAutoCommit(false);
         String query = "SELECT idbidan from bidan where namaBidan=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, Nama);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            kodeBidan = result.getString(1);
         }
         conn.commit();
-        return namanya;
+        return kodeBidan;
     }
 
     public String cariBidan(String kode) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String namaBidan = "";
         conn.setAutoCommit(false);
         String query = "SELECT namabidan from bidan where idbidan=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, kode);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            namaBidan = result.getString(1);
         }
         conn.commit();
-        return namanya;
+        return namaBidan;
     }
 
     public List<RekamImunisasiData> getAllPasienRM(String id) throws SQLException {
@@ -212,23 +211,23 @@ public class ControlData {
     public String cariTanggallahir(String id) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String tanggal = "";
         conn.setAutoCommit(false);
         String query = "SELECT tanggallahir from pasien where idpasien=? ";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, id);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            tanggal = result.getString(1);
         }
         conn.commit();
-        return namanya;
+        return tanggal;
     }
 
-    public String cariSelisaih(String dateawal, String dateakhir) throws SQLException {
+    public String cariSelisih(String dateawal, String dateakhir) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String selisih = "";
         conn.setAutoCommit(false);
         String query = "SELECT ROUND((DATEDIFF(?,?)/7),0)";
         stmt = conn.prepareStatement(query);
@@ -236,29 +235,29 @@ public class ControlData {
         stmt.setString(2, dateakhir);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            selisih = result.getString(1);
         }
         conn.commit();
-        return namanya;
+        return selisih;
     }
 
     public String cariImunisasi(int minggu) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet result = null;
-        String namanya = "";
+        String imun = "";
         conn.setAutoCommit(false);
         String query = "SELECT idimunisasi from imunisasi where minggu =?";
         stmt = conn.prepareStatement(query);
         stmt.setInt(1, minggu);
         result = stmt.executeQuery();
         if (result.next()) {
-            namanya = result.getString(1);
+            imun = result.getString(1);
         }
-        if ((namanya.equalsIgnoreCase("") == true)) {
-            return namanya = "1";
+        if (minggu < 4) {
+            return imun = "1";
         }
         conn.commit();
-        return namanya;
+        return imun;
     }
 
     public void tambahRekamImunisasiBaru(RekamImunisasiData pasdt) throws SQLException {

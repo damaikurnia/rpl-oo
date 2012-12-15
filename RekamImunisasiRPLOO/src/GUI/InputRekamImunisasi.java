@@ -386,7 +386,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
             String tanggal = sdf.format(tgl);
             String lahir = ControlData.getKoneksi().cariTanggallahir(idPsienTF.getText());
-            String selisih = ControlData.getKoneksi().cariSelisaih(tanggal,lahir);
+            String selisih = ControlData.getKoneksi().cariSelisih(tanggal,lahir);
              String minggu = ControlData.getKoneksi().cariImunisasi(Integer.valueOf(selisih));
               RekamImunisasiData RI=new RekamImunisasiData();
               RI.setIdPetugas(idpetugas);

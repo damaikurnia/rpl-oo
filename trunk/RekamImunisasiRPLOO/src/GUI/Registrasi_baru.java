@@ -271,6 +271,7 @@ public class Registrasi_baru extends javax.swing.JFrame {
         PD.setNamaOrangTua(namaOrtu);
         PD.setNotelpOrtu(notelp);
         try {
+            String namaPegawai = ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
             ControlData.getKoneksi().tambahPasienBaruPrepared(PD);
             JOptionPane.showMessageDialog(rootPane, "data pasien " + nama + " terisimpan");
             emptyForm();
@@ -282,7 +283,9 @@ public class Registrasi_baru extends javax.swing.JFrame {
             rp.idpasienTF.setEnabled(false);
             rp.idpasienTF.setText(id);
             rp.namaPasienTF.setText(nama);
+            rp.namaOrtuTF.setText(namaOrtu);
             rp.idpetugasTF.setText(idpetugasTF.getText());
+            rp.namaPegawaiTF.setText(namaPegawai);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "terjadi error " + ex.getMessage());
             Logger.getLogger(Registrasi_baru.class.getName()).log(Level.SEVERE, null, ex);

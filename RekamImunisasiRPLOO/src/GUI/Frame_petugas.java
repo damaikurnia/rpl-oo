@@ -226,9 +226,15 @@ public class Frame_petugas extends javax.swing.JFrame {
 //        this.setEnabled(false);
         try {
             String id = ControlData.getKoneksi().cariKodePegawai(label_petugas.getText());
+            String nama = ControlData.getKoneksi().cariPegawai(id);
             rp.idpetugasTF.setText(id);
             rp.idpetugasTF.setEditable(false);
             rp.idpetugasTF.setEnabled(false);
+            rp.namaPegawaiTF.setText(nama);
+            rp.namaPegawaiTF.setEditable(false);
+            rp.namaPegawaiTF.setEnabled(false);
+            rp.namaOrtuTF.setEditable(false);
+            rp.namaOrtuTF.setEnabled(false);
         } catch (Exception ex) {
             Logger.getLogger(Frame_petugas.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -48,17 +48,17 @@ public class Gateway extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelPasien = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        List_imun = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         pesanTF = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        kirim_button = new javax.swing.JButton();
         date_imun = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        keluar_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 102));
@@ -104,11 +104,11 @@ public class Gateway extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Pengiriman SMS");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("List");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        List_imun.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        List_imun.setText("List");
+        List_imun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                List_imunActionPerformed(evt);
             }
         });
 
@@ -133,11 +133,11 @@ public class Gateway extends javax.swing.JFrame {
                 .addComponent(pesanTF, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("kirim");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        kirim_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kirim_button.setText("kirim");
+        kirim_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                kirim_buttonActionPerformed(evt);
             }
         });
 
@@ -164,11 +164,11 @@ public class Gateway extends javax.swing.JFrame {
         jLabel8.setToolTipText("");
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 160));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setText("Keluar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        keluar_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        keluar_button.setText("Keluar");
+        keluar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                keluar_buttonActionPerformed(evt);
             }
         });
 
@@ -179,14 +179,14 @@ public class Gateway extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(keluar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(List_imun, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(728, 728, 728)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -199,7 +199,7 @@ public class Gateway extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(52, 52, 52)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(kirim_button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(108, 108, 108)
                             .addComponent(date_imun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -212,20 +212,20 @@ public class Gateway extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(List_imun)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(keluar_button)
                 .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(213, 213, 213)
                     .addComponent(date_imun, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-                    .addComponent(jButton4)
+                    .addComponent(kirim_button)
                     .addContainerGap()))
         );
 
@@ -250,11 +250,11 @@ public class Gateway extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelPasienMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void List_imunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_List_imunActionPerformed
         tampilTable();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_List_imunActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void kirim_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirim_buttonActionPerformed
        
         Koneksi k = new Koneksi();
         Connection connection = k.getKoneksi();
@@ -282,11 +282,11 @@ public class Gateway extends javax.swing.JFrame {
                 Logger.getLogger(Gateway.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_kirim_buttonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_keluar_buttonActionPerformed
     private void tampilTable() {
         Date tgl = date_imun.getDate();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
@@ -335,10 +335,8 @@ public class Gateway extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton List_imun;
     private com.toedter.calendar.JDateChooser date_imun;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -349,6 +347,8 @@ public class Gateway extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton keluar_button;
+    private javax.swing.JButton kirim_button;
     private javax.swing.JTextField pesanTF;
     public static javax.swing.JTable tabelPasien;
     // End of variables declaration//GEN-END:variables

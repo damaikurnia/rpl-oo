@@ -61,7 +61,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         Simpan_button = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Batal_button = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -105,12 +105,12 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(59, 59, 59)
-                        .addComponent(idPsienTF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idPsienTF, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idRekamImunTF, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(idRekamImunTF, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,11 +221,11 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Batal");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Batal_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Batal_button.setText("Batal");
+        Batal_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Batal_buttonActionPerformed(evt);
             }
         });
 
@@ -257,7 +257,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
                                 .addComponent(jLabel20))))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(218, 218, 218)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Batal_button, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(Simpan_button, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -283,7 +283,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Simpan_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Batal_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -427,9 +427,9 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Simpan_buttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Batal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Batal_buttonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Batal_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,13 +467,13 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
     }
     private RekamPasien Parent;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Batal_button;
     private javax.swing.JButton Simpan_button;
     public static javax.swing.JTextField beratbadanTF;
     private javax.swing.JTextField idBidanTF;
     public static javax.swing.JTextField idPetugasTF;
     public static javax.swing.JTextField idPsienTF;
     public static javax.swing.JTextField idRekamImunTF;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser_tanggalImun;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

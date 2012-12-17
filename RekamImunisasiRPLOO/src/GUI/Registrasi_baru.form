@@ -272,6 +272,9 @@
               </Constraints>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="tanggalLahir_DC">
+              <Properties>
+                <Property name="dateFormatString" type="java.lang.String" value="d MMM yyyy"/>
+              </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tanggalLahir_DCMouseClicked"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tanggalLahir_DCPropertyChange"/>

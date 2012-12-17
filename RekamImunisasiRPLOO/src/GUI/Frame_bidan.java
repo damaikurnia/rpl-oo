@@ -185,6 +185,8 @@ public class Frame_bidan extends javax.swing.JFrame {
         int a = JOptionPane.showConfirmDialog(rootPane, "yakin keluar", "exit", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
             dispose();
+            Login_menu lm=new Login_menu();
+            lm.setVisible(true);
         }
     }//GEN-LAST:event_logout_buttonActionPerformed
 

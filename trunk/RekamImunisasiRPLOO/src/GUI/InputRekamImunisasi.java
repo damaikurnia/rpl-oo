@@ -312,9 +312,6 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -327,6 +324,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(220, 220, 220))))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,9 +347,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 702, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,41 +388,40 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
 
     private void Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Simpan_buttonActionPerformed
         try {
-            String id=idPsienTF.getText();
-            String idrekam=idRekamImunTF.getText();
-            String idpetugas=idPetugasTF.getText();
-            String idbidan=idBidanTF.getText();
-            String tinggi=tinggiBadanTF.getText();
-            String berat=beratbadanTF.getText();
+            String id = idPsienTF.getText();
+            String idrekam = idRekamImunTF.getText();
+            String idpetugas = idPetugasTF.getText();
+            String idbidan = idBidanTF.getText();
+            String tinggi = tinggiBadanTF.getText();
+            String berat = beratbadanTF.getText();
             Date tgl = jDateChooser_tanggalImun.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
             String tanggal = sdf.format(tgl);
             String lahir = ControlData.getKoneksi().cariTanggallahir(idPsienTF.getText());
-            String selisih = ControlData.getKoneksi().cariSelisih(tanggal,lahir);
-             String minggu = ControlData.getKoneksi().cariImunisasi(Integer.valueOf(selisih));
-              RekamImunisasiData RI=new RekamImunisasiData();
-              RI.setIdPetugas(idpetugas);
-              RI.setBeratBadan(Integer.valueOf(berat));
-              RI.setTinggiBadan(Integer.valueOf(tinggi));
-              PasienData pd=new PasienData();
-              pd.setIdPasien(id);
-              RI.setPasien(pd);
-              RI.setIdBidan(idbidan);
-              RI.setTanggal(tanggal);
-              ImunisasiDT idt=new ImunisasiDT();
-              idt.setIdImunisasi(minggu);
-              RI.setImun(idt);
-              RI.setIdRekamImun(idrekam);
-              
-             ControlData.getKoneksi().tambahRekamImunisasiBaru(RI);
-             JOptionPane.showMessageDialog(rootPane, "Data masuk dalam Databse Imunisasi");
-             this.dispose();
-             RekamPasien rp=new RekamPasien();
-             
-             rp.setVisible(true);
-             rp.idpasienTF.setText(idPsienTF.getText());
-             rp.idpetugasTF.setText(idPetugasTF.getText());
-             rp.tampilTable();
+            String selisih = ControlData.getKoneksi().cariSelisih(tanggal, lahir);
+            String imunID = ControlData.getKoneksi().cariImunisasi(Integer.valueOf(selisih));
+            RekamImunisasiData RI = new RekamImunisasiData();
+            RI.setIdPetugas(idpetugas);
+            RI.setBeratBadan(Integer.valueOf(berat));
+            RI.setTinggiBadan(Integer.valueOf(tinggi));
+            PasienData pd = new PasienData();
+            pd.setIdPasien(id);
+            RI.setPasien(pd);
+            RI.setIdBidan(idbidan);
+            RI.setTanggal(tanggal);
+            ImunisasiDT idt = new ImunisasiDT();
+            idt.setIdImunisasi(imunID);
+            RI.setImun(idt);
+            RI.setIdRekamImun(idrekam);
+
+            ControlData.getKoneksi().tambahRekamImunisasiBaru(RI);
+            JOptionPane.showMessageDialog(rootPane, "Data masuk dalam Databse Imunisasi");
+            this.dispose();
+            RekamPasien rp = new RekamPasien();
+            RekamPasien.idpasienTF.setText(idPsienTF.getText());
+            RekamPasien.idpetugasTF.setText(idPetugasTF.getText());
+            Parent.tampilTable();
+            
         } catch (Exception ex) {
             Logger.getLogger(InputRekamImunisasi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -470,6 +465,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
             }
         });
     }
+    private RekamPasien Parent;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Simpan_button;
     public static javax.swing.JTextField beratbadanTF;
@@ -500,4 +496,11 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     public static javax.swing.JTextField tinggiBadanTF;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @param Parent the Parent to set
+     */
+    public void setParent(RekamPasien Parent) {
+        this.Parent = Parent;
+    }
 }

@@ -140,7 +140,7 @@ r.tanggal between $P{tglAwal} and $P{tglAkhir}]]></queryString>
 						key="image-1"/>
 					<box topBorder="None" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#FFFFFF" rightBorder="None" rightBorderColor="#FFFFFF" bottomBorder="None" bottomBorderColor="#FFFFFF"/>
 					<graphicElement stretchType="NoStretch" pen="None"/>
-					<imageExpression class="java.lang.String"><![CDATA["E:\\USD\\Semester 5\\RPL OO\\Program\\trunk\\RekamImunisasiRPLOO\\src\\picture\\puskemas.jpg"]]></imageExpression>
+					<imageExpression class="java.lang.String"><![CDATA["E:\\RPLO\\trunk\\RekamImunisasiRPLOO\\src\\picture\\puskemas.jpg"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement

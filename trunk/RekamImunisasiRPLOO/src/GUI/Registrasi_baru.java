@@ -8,6 +8,7 @@ import Controller.ControlData;
 import Data.PasienData;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -27,6 +28,8 @@ public class Registrasi_baru extends javax.swing.JFrame {
         ButtonGroup BG = new ButtonGroup();
         BG.add(L_radio);
         BG.add(P_radio);
+        GregorianCalendar gc=new GregorianCalendar();
+        tanggalLahir_DC.setDate(gc.getTime());
     }
 
     /**
@@ -262,40 +265,48 @@ public class Registrasi_baru extends javax.swing.JFrame {
         }
         String namaOrtu = namaOrtu_TF.getText();
         String notelp = noTelpOrtu_TF.getText();
+        if (jenisKel == null || id.equals("") || nama.equals("")
+                || alamat.equals("") || tanggalLahir_DC == null
+                || notelp.equals("") || namaOrtu.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "belum lengkap,harap isi form yang masih kosong",
+                    "error", JOptionPane.ERROR_MESSAGE);
 
-        PasienData PD = new PasienData();
-        PD.setIdPasien(id);
-        PD.setNamaPasien(nama);
-        PD.setAlamat(alamat);
-        PD.setTanggalLahir(tanggal);
-        PD.setJenisKelamin(jenisKel);
-        PD.setNamaOrangTua(namaOrtu);
-        PD.setNotelpOrtu(notelp);
-        try {
-            String namaPegawai = ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
-            ControlData.getKoneksi().tambahPasienBaruPrepared(PD);
-            JOptionPane.showMessageDialog(rootPane, "data pasien " + nama + " terisimpan");
-            emptyForm();
-//            idPasien_TF.requestFocus();
-            this.dispose();
-            RekamPasien rp = new RekamPasien();
-            rp.setVisible(true);
-            rp.idpasienTF.setEditable(false);
-            rp.idpasienTF.setEnabled(false);
-            rp.idpasienTF.setText(id);
-            rp.namaPasienTF.setText(nama);
-            rp.namaOrtuTF.setText(namaOrtu);
-            rp.idpetugasTF.setText(idpetugasTF.getText());
-            rp.namaPegawaiTF.setText(namaPegawai);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "terjadi error " + ex.getMessage());
-            Logger.getLogger(Registrasi_baru.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            PasienData PD = new PasienData();
+            PD.setIdPasien(id);
+            PD.setNamaPasien(nama);
+            PD.setAlamat(alamat);
+            PD.setTanggalLahir(tanggal);
+            PD.setJenisKelamin(jenisKel);
+            PD.setNamaOrangTua(namaOrtu);
+            PD.setNotelpOrtu(notelp);
+            try {
+                String namaPegawai = ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
+                ControlData.getKoneksi().tambahPasienBaruPrepared(PD);
+                JOptionPane.showMessageDialog(rootPane, "data pasien " + nama + " terisimpan");
+                emptyForm();
+                this.dispose();
+                RekamPasien rp = new RekamPasien();
+                rp.setVisible(true);
+                rp.idpasienTF.setEditable(false);
+                rp.idpasienTF.setEnabled(false);
+                rp.idpasienTF.setText(id);
+                rp.namaPasienTF.setText(nama);
+                rp.namaOrtuTF.setText(namaOrtu);
+                rp.idpetugasTF.setText(idpetugasTF.getText());
+                rp.namaPegawaiTF.setText(namaPegawai);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "terjadi error " + ex.getMessage());
+                Logger.getLogger(Registrasi_baru.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
+
 
     }//GEN-LAST:event_simpan_buttonActionPerformed
 
     private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
-        
+
         this.dispose();
         Registrasi reg = new Registrasi();
         Registrasi.idpetugasTF.setText(idpetugasTF.getText());

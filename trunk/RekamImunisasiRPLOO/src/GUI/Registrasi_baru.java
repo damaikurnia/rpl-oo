@@ -144,6 +144,7 @@ public class Registrasi_baru extends javax.swing.JFrame {
         });
         jPanel3.add(keluar_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 377, 100, 39));
 
+        tanggalLahir_DC.setDateFormatString("d MMM yyyy");
         tanggalLahir_DC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tanggalLahir_DCMouseClicked(evt);

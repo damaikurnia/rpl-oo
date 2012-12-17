@@ -4,8 +4,11 @@
  */
 package GUI;
 
+import Controller.ControlData;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -233,10 +236,10 @@ public class Registrasi extends javax.swing.JFrame {
         int a = JOptionPane.showConfirmDialog(rootPane, "yakin keluar", "exit", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
             JOptionPane.showMessageDialog(rootPane, "selesai ");
-           this.dispose();
-           Frame_petugas fp=new Frame_petugas();
-           fp.dispose();
-            Login_menu lm=new Login_menu();
+            this.dispose();
+            Frame_petugas fp = new Frame_petugas();
+            fp.dispose();
+            Login_menu lm = new Login_menu();
             lm.setVisible(true);
         }
     }//GEN-LAST:event_keluar_buttonActionPerformed
@@ -244,10 +247,16 @@ public class Registrasi extends javax.swing.JFrame {
     private void logout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_buttonActionPerformed
         int a = JOptionPane.showConfirmDialog(rootPane, "yakin keluar", "exit", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
-            JOptionPane.showMessageDialog(rootPane, "selesai ");
-            this.dispose();
-            Frame_petugas lm=new Frame_petugas();
-            lm.setVisible(true);
+            try {
+                String nama = ControlData.getKoneksi().cariPegawai(idpetugasTF.getText());
+                this.dispose();
+                Frame_petugas lm = new Frame_petugas();
+                Frame_petugas.label_petugas.setText(nama);
+                lm.setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(Registrasi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }//GEN-LAST:event_logout_buttonActionPerformed
     @Override

@@ -344,15 +344,43 @@ public class ControlData {
         conn.commit();
         return pasien;
     }
-    
-     public void updateBidan(String kode,String rm) throws SQLException {
+
+    public void updateBidan(String kode, String rm) throws SQLException {
         PreparedStatement stmt = null;
         try {
             conn.setAutoCommit(false);
             String query = "update rekamimunisasi set idbidan=? where idrekamimunisasi=? ";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, kode);
-             stmt.setString(2, rm);
+            stmt.setString(2, rm);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException se) {
+            conn.rollback();
+            throw se;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void deleteRekamImun(String kode) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "delete from rekamimunisasi where idrekamimunisasi=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, kode);
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException se) {

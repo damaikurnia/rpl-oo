@@ -32,7 +32,7 @@
 	<queryString><![CDATA[SELECT b.namabidan,r.idpasien,p.namapasien,r.jenisimun,DATE_FORMAT(r.tanggal, '%d-%M-%Y'),
 DATE_FORMAT(sysdate(), '%d-%M-%Y') 
   from rekamimunisasi r,pasien p, bidan b
-where r.idpasien= p.idpasien and r.idbidan = b.idbidan and r.idbidan like 'b.idbidan' and 
+where r.idpasien= p.idpasien and r.idbidan = b.idbidan and b.idbidan = 'B001' and 
 r.tanggal between $P{tglAwal} and $P{tglAkhir}]]></queryString>
 
 	<field name="namabidan" class="java.lang.String"/>

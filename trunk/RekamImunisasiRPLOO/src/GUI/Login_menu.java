@@ -239,12 +239,9 @@ public class Login_menu extends javax.swing.JFrame {
                         Frame_petugas FP = new Frame_petugas();
                         FP.setVisible(true);
                         emptyField();
-//                    FP.setMenuowner(this);
-//                    FP.setMenuowner(this);
                         String nama = ControlData.getKoneksi().cariPegawai(id);
                         FP.label_petugas.setText(nama);
                         this.dispose();
-//                    this.setEnabled(false);
 
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Username dan Password Petugas salah.");

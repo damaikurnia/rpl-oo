@@ -17,23 +17,30 @@
 		 whenNoDataType="NoPages"
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false">
-	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.scriptlethandling" value="0" />
 	<property name="ireport.encoding" value="UTF-8" />
 	<import value="java.util.*" />
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="tanggalImunisasi" isForPrompting="true" class="java.lang.String">
+	<parameter name="tglAwal" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<queryString><![CDATA[SELECT r.idpasien,p.namapasien,r.jenisimun,DATE_FORMAT(r.tanggal, '%d-%M-%Y') 
-  from rekamimunisasi r,pasien p
-where r.idpasien= p.idpasien and r.tanggal= $P{tanggalImunisasi}]]></queryString>
+	<parameter name="tglAkhir" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT b.namabidan,r.idpasien,p.namapasien,r.jenisimun,DATE_FORMAT(r.tanggal, '%d-%M-%Y'),
+DATE_FORMAT(sysdate(), '%d-%M-%Y') 
+  from rekamimunisasi r,pasien p, bidan b
+where r.idpasien= p.idpasien and r.idbidan = b.idbidan and b.idbidan = 'B001' and 
+r.tanggal between $P{tglAwal} and $P{tglAkhir}]]></queryString>
 
+	<field name="namabidan" class="java.lang.String"/>
 	<field name="idpasien" class="java.lang.String"/>
 	<field name="namapasien" class="java.lang.String"/>
 	<field name="jenisimun" class="java.lang.String"/>
 	<field name="DATE_FORMAT(r.tanggal, '%d-%M-%Y')" class="java.lang.String"/>
+	<field name="DATE_FORMAT(sysdate(), '%d-%M-%Y')" class="java.lang.String"/>
 
 	<variable name="noUrut" class="java.lang.Integer" resetType="None" calculation="Count">
 		<variableExpression><![CDATA[new java.lang.Integer(  ($V{noUrut}.intValue()) )]]></variableExpression>
@@ -41,6 +48,70 @@ where r.idpasien= p.idpasien and r.tanggal= $P{tanggalImunisasi}]]></queryString
 	<variable name="satu" class="java.lang.Integer" resetType="None" calculation="Count">
 		<variableExpression><![CDATA[$V{satu}]]></variableExpression>
 	</variable>
+
+		<group  name="Puskesmas" >
+			<groupExpression><![CDATA[]]></groupExpression>
+			<groupHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="118"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="302"
+						y="17"
+						width="92"
+						height="20"
+						key="staticText-11"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Klaten Selatan, ]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="394"
+						y="17"
+						width="110"
+						height="20"
+						key="textField-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DATE_FORMAT(sysdate(), '%d-%M-%Y')}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="302"
+						y="37"
+						width="202"
+						height="17"
+						key="staticText-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Kepala Puskesmas]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="302"
+						y="92"
+						width="202"
+						height="20"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{namabidan}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupFooter>
+		</group>
 		<background>
 			<band height="0"  isSplitAllowed="true" >
 			</band>
@@ -69,7 +140,7 @@ where r.idpasien= p.idpasien and r.tanggal= $P{tanggalImunisasi}]]></queryString
 						key="image-1"/>
 					<box topBorder="None" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#FFFFFF" rightBorder="None" rightBorderColor="#FFFFFF" bottomBorder="None" bottomBorderColor="#FFFFFF"/>
 					<graphicElement stretchType="NoStretch" pen="None"/>
-					<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\a9uszT\\Documents\\NetBeansProjects\\RekamImunisasi\\src\\picture\\puskemas.jpg"]]></imageExpression>
+					<imageExpression class="java.lang.String"><![CDATA["E:\\USD\\Semester 5\\RPL OO\\Program\\trunk\\RekamImunisasiRPLOO\\src\\picture\\puskemas.jpg"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement
@@ -96,93 +167,145 @@ where r.idpasien= p.idpasien and r.tanggal= $P{tanggalImunisasi}]]></queryString
 			</band>
 		</title>
 		<pageHeader>
-			<band height="2"  isSplitAllowed="true" >
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="57"  isSplitAllowed="true" >
+			<band height="47"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="0"
-						y="28"
+						y="0"
+						width="535"
+						height="20"
+						key="staticText-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Laporan Imunisasi Balita]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="59"
+						y="20"
+						width="97"
+						height="20"
+						key="staticText-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Tanggal ]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="156"
+						y="20"
+						width="110"
+						height="20"
+						key="textField-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$P{tglAwal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="266"
+						y="20"
+						width="97"
+						height="20"
+						key="staticText-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<text><![CDATA[s.d]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="363"
+						y="20"
+						width="110"
+						height="20"
+						key="textField-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$P{tglAkhir}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="24"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="0"
+						y="0"
 						width="85"
 						height="24"
 						key="staticText-3"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Nomor]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="85"
-						y="28"
+						y="0"
 						width="110"
 						height="24"
 						key="staticText-4"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
 				<text><![CDATA[id Pasien]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="195"
-						y="28"
+						y="0"
 						width="131"
 						height="24"
 						key="staticText-5"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Nama Pasien]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="326"
-						y="28"
+						y="0"
 						width="110"
 						height="24"
 						key="staticText-6"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Jenis Imunisasi]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="436"
-						y="28"
+						y="0"
 						width="99"
 						height="24"
 						key="staticText-7"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Tanggal Imunisasi]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="7"
-						y="-2"
-						width="528"
-						height="26"
-						key="staticText-8"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Daftar Balita yang di Imunisasi]]></text>
 				</staticText>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="25"  isSplitAllowed="true" >
+			<band height="19"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
@@ -252,23 +375,10 @@ where r.idpasien= p.idpasien and r.tanggal= $P{tanggalImunisasi}]]></queryString
 		</detail>
 		<columnFooter>
 			<band height="31"  isSplitAllowed="true" >
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="436"
-						y="6"
-						width="98"
-						height="22"
-						key="textField-6"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font/>
-					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="2"  isSplitAllowed="true" >
+			<band height="0"  isSplitAllowed="true" >
 			</band>
 		</pageFooter>
 		<summary>

@@ -387,44 +387,56 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
     }//GEN-LAST:event_tinggiBadanTFActionPerformed
 
     private void Simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Simpan_buttonActionPerformed
-        try {
-            String id = idPsienTF.getText();
-            String idrekam = idRekamImunTF.getText();
-            String idpetugas = idPetugasTF.getText();
-            String idbidan = idBidanTF.getText();
-            String tinggi = tinggiBadanTF.getText();
-            String berat = beratbadanTF.getText();
-            Date tgl = jDateChooser_tanggalImun.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
-            String tanggal = sdf.format(tgl);
-            String lahir = ControlData.getKoneksi().cariTanggallahir(idPsienTF.getText());
-            String selisih = ControlData.getKoneksi().cariSelisih(tanggal, lahir);
-            String imunID = ControlData.getKoneksi().cariImunisasi(Integer.valueOf(selisih));
-            RekamImunisasiData RI = new RekamImunisasiData();
-            RI.setIdPetugas(idpetugas);
-            RI.setBeratBadan(Integer.valueOf(berat));
-            RI.setTinggiBadan(Integer.valueOf(tinggi));
-            PasienData pd = new PasienData();
-            pd.setIdPasien(id);
-            RI.setPasien(pd);
-            RI.setIdBidan(idbidan);
-            RI.setTanggal(tanggal);
-            ImunisasiDT idt = new ImunisasiDT();
-            idt.setIdImunisasi(imunID);
-            RI.setImun(idt);
-            RI.setIdRekamImun(idrekam);
+        if (beratbadanTF.getText().equals("") && tinggiBadanTF.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "field berat badan dan tinggi kosong \n harap isi dahulu",
+                    "warning", JOptionPane.WARNING_MESSAGE);
+        } else if (beratbadanTF.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "berat badan kosong \n harap isi dahulu", "warning",
+                    JOptionPane.WARNING_MESSAGE);
+        } else if (tinggiBadanTF.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "tinggi badan kosong \n harap isi dahulu", "warning",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                String id = idPsienTF.getText();
+                String idrekam = idRekamImunTF.getText();
+                String idpetugas = idPetugasTF.getText();
+                String idbidan = idBidanTF.getText();
+                String tinggi = tinggiBadanTF.getText();
+                String berat = beratbadanTF.getText();
+                Date tgl = jDateChooser_tanggalImun.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+                String tanggal = sdf.format(tgl);
+                String lahir = ControlData.getKoneksi().cariTanggallahir(idPsienTF.getText());
+                String selisih = ControlData.getKoneksi().cariSelisih(tanggal, lahir);
+                String imunID = ControlData.getKoneksi().cariImunisasi(Integer.valueOf(selisih));
+                RekamImunisasiData RI = new RekamImunisasiData();
+                RI.setIdPetugas(idpetugas);
+                RI.setBeratBadan(Integer.valueOf(berat));
+                RI.setTinggiBadan(Integer.valueOf(tinggi));
+                PasienData pd = new PasienData();
+                pd.setIdPasien(id);
+                RI.setPasien(pd);
+                RI.setIdBidan(idbidan);
+                RI.setTanggal(tanggal);
+                ImunisasiDT idt = new ImunisasiDT();
+                idt.setIdImunisasi(imunID);
+                RI.setImun(idt);
+                RI.setIdRekamImun(idrekam);
 
-            ControlData.getKoneksi().tambahRekamImunisasiBaru(RI);
-            JOptionPane.showMessageDialog(rootPane, "Data masuk dalam Databse Imunisasi");
-            this.dispose();
-            RekamPasien rp = new RekamPasien();
-            RekamPasien.idpasienTF.setText(idPsienTF.getText());
-            RekamPasien.idpetugasTF.setText(idPetugasTF.getText());
-            Parent.tampilTable();
-            
-        } catch (Exception ex) {
-            Logger.getLogger(InputRekamImunisasi.class.getName()).log(Level.SEVERE, null, ex);
+                ControlData.getKoneksi().tambahRekamImunisasiBaru(RI);
+                JOptionPane.showMessageDialog(rootPane, "Data masuk dalam Databse Imunisasi");
+                this.dispose();
+                RekamPasien rp = new RekamPasien();
+                RekamPasien.idpasienTF.setText(idPsienTF.getText());
+                RekamPasien.idpetugasTF.setText(idPetugasTF.getText());
+                Parent.tampilTable();
+
+            } catch (Exception ex) {
+                Logger.getLogger(InputRekamImunisasi.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }//GEN-LAST:event_Simpan_buttonActionPerformed
 
     private void Batal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Batal_buttonActionPerformed

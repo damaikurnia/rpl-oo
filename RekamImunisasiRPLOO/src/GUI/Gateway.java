@@ -32,6 +32,7 @@ public class Gateway extends javax.swing.JFrame {
         initComponents();
         GregorianCalendar gc = new GregorianCalendar();
         date_imun.setDate(gc.getTime());
+        kirim_button.setEnabled(false);
     }
 
     /**
@@ -252,10 +253,11 @@ public class Gateway extends javax.swing.JFrame {
 
     private void List_imunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_List_imunActionPerformed
         tampilTable();
+        kirim_button.setEnabled(true);
     }//GEN-LAST:event_List_imunActionPerformed
 
     private void kirim_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirim_buttonActionPerformed
-       
+
         Koneksi k = new Koneksi();
         Connection connection = k.getKoneksi();
         int i = tabelPasien.getRowCount();
@@ -267,7 +269,7 @@ public class Gateway extends javax.swing.JFrame {
                 String namaOrtu = tabelPasien.getValueAt(j, 2).toString();
                 String completeNumber = tabelPasien.getValueAt(j, 3).toString();
                 String ContentMsg = "Yth. Bp/Ibu " + namaOrtu+"\n"
-                        + " anak anda " + namaAnak + " besok minngu depan harap "
+                        + " anak anda " + namaAnak + " besok minggu depan harap "
                         + "melakukan imunisasi " + nextImun + ". terima kasih";
                 pesanTF.setText(ContentMsg);
                 PreparedStatement preparedStatement = null;

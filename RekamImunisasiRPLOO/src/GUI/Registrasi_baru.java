@@ -288,13 +288,15 @@ public class Registrasi_baru extends javax.swing.JFrame {
                 this.dispose();
                 RekamPasien rp = new RekamPasien();
                 rp.setVisible(true);
-                rp.idpasienTF.setEditable(false);
-                rp.idpasienTF.setEnabled(false);
-                rp.idpasienTF.setText(id);
-                rp.namaPasienTF.setText(nama);
-                rp.namaOrtuTF.setText(namaOrtu);
-                rp.idpetugasTF.setText(idpetugasTF.getText());
-                rp.namaPegawaiTF.setText(namaPegawai);
+                RekamPasien.idpasienTF.setEditable(false);
+                RekamPasien.idpasienTF.setEnabled(false);
+                RekamPasien.idpasienTF.setText(id);
+                RekamPasien.namaPasienTF.setText(nama);
+                RekamPasien.namaOrtuTF.setText(namaOrtu);
+                RekamPasien.idpetugasTF.setText(idpetugasTF.getText());
+                RekamPasien.namaPegawaiTF.setText(namaPegawai);
+                RekamPasien.Hapus.setEnabled(true);
+                RekamPasien.input_button.setEnabled(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, "terjadi error " + ex.getMessage());
                 Logger.getLogger(Registrasi_baru.class.getName()).log(Level.SEVERE, null, ex);

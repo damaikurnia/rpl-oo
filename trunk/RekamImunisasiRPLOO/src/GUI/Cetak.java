@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -185,6 +186,7 @@ public class Cetak extends javax.swing.JFrame {
 
     private void ok_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_buttonActionPerformed
         if (radio_now.isSelected()) {
+
             try {
                 Connection kon = null;
                 String reportSource = "";
@@ -208,6 +210,32 @@ public class Cetak extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(Cetak.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else if (radio_rentang.isSelected()) {
+            try {
+                Connection kon = null;
+                String reportSource = "";
+                kon = ConnMySql.getConnections();
+                Date tglawal = datenow.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+                String awal = sdf.format(tglawal);
+                Date tglAkhir = dateAkhir.getDate();
+                String akhir = sdf.format(tglAkhir);
+                reportSource = "./reports/LaporanImunisasi.jasper";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("tanggalAwal", awal);
+                params.put("tanggalAkhir", akhir);
+                try {
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, params, kon);
+                    JasperViewer.viewReport(jasperPrint, false);
+                } catch (JRException ex) {
+                    ex.printStackTrace();
+                }
+                this.setExtendedState(JFrame.ICONIFIED);
+            } catch (Exception ex) {
+                Logger.getLogger(Cetak.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "pilih yang akan dicetak", "warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_ok_buttonActionPerformed
 

@@ -352,6 +352,7 @@ public class RekamPasien extends javax.swing.JFrame {
         try {
             InputRekamImunisasi in = new InputRekamImunisasi();
             in.setVisible(true);
+            in.setParent(this);
             InputRekamImunisasi.idPsienTF.setText(idpasienTF.getText());
             InputRekamImunisasi.idPsienTF.setEditable(false);
             InputRekamImunisasi.idPsienTF.setEnabled(false);
@@ -445,6 +446,7 @@ public class RekamPasien extends javax.swing.JFrame {
         namaOrtuTF.setText(namaOrtu);
         jInternalFrame1.setVisible(false);
         tampilTable();
+        
     }//GEN-LAST:event_tabel_cariMouseClicked
     public void tampilTable() {
         try {

@@ -282,20 +282,20 @@ public class Gateway extends javax.swing.JFrame {
                 String imunisasi = tabelPasien.getValueAt(j, 4).toString();
                 String nextImun = ControlData.getKoneksi().nextImunisasi(imunisasi);
                 String namaAnak = tabelPasien.getValueAt(j, 1).toString();
-                
-                String completeNumber =  tabelPasien.getValueAt(j, 3).toString();
-                String ContentMsg =  "anak anda " + namaAnak + " besok minngu depan harap "
-                            + "melakukan imunisasi " + nextImun + ". terima kasih";
+                String namaOrtu = tabelPasien.getValueAt(j, 2).toString();
+                String completeNumber = tabelPasien.getValueAt(j, 3).toString();
+                String ContentMsg = "Yth. Bp/Ibu " + namaOrtu+"\n"
+                        + " anak anda " + namaAnak + " besok minngu depan harap "
+                        + "melakukan imunisasi " + nextImun + ". terima kasih";
                 pesanTF.setText(ContentMsg);
-                    PreparedStatement preparedStatement = null;
-                    preparedStatement = connection.prepareStatement("INSERT INTO outbox(Class,DestinationNumber,"
-                            + "TextDecoded,SendingDateTime,RelativeValidity,SenderID,DeliveryReport,"
-                            + "CreatorID) VALUES('-1',?,?,NOW(),-1,'','no','gammu')");
-                    preparedStatement.setString(1, completeNumber);
-                    preparedStatement.setString(2, ContentMsg);
-                    preparedStatement.executeUpdate();
-
-                    JOptionPane.showMessageDialog(null, "SMS Sent Successfully...");
+                PreparedStatement preparedStatement = null;
+                preparedStatement = connection.prepareStatement("INSERT INTO outbox(Class,DestinationNumber,"
+                        + "TextDecoded,SendingDateTime,RelativeValidity,SenderID,DeliveryReport,"
+                        + "CreatorID) VALUES('-1',?,?,NOW(),-1,'','no','gammu')");
+                preparedStatement.setString(1, completeNumber);
+                preparedStatement.setString(2, ContentMsg);
+                preparedStatement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "SMS Sent Successfully...");
             } catch (Exception ex) {
                 Logger.getLogger(Gateway.class.getName()).log(Level.SEVERE, null, ex);
             }

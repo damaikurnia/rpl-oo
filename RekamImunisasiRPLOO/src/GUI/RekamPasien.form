@@ -481,9 +481,9 @@
                               <Component id="namaPegawaiTF" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="namaPasienTF" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="namaOrtuTF" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="namaPasienTF" pref="160" max="32767" attributes="0"/>
+                                  <Component id="namaOrtuTF" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>

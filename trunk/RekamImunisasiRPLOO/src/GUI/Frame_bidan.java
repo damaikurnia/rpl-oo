@@ -184,9 +184,7 @@ public class Frame_bidan extends javax.swing.JFrame {
     private void logout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_buttonActionPerformed
         int a = JOptionPane.showConfirmDialog(rootPane, "yakin keluar", "exit", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
-            JOptionPane.showMessageDialog(rootPane, "selesai ");
             dispose();
-            disable();
         }
     }//GEN-LAST:event_logout_buttonActionPerformed
 

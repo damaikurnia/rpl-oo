@@ -35,7 +35,7 @@ public class ImunisasiSekarang extends AbstractTableModel {
         RekamImunisasiData k = barang.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return k.getPasien().getIdPasien();
+                return k.getIdRekamImun();
             case 1:
                 return k.getPasien().getNamaPasien();
             case 2:

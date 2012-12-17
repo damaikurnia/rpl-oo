@@ -29,6 +29,8 @@ public class RekamPasien extends javax.swing.JFrame {
         tampilTable();
         tampilTableCari();
         jInternalFrame1.setVisible(false);
+        input_button.setEnabled(false);
+        Hapus.setEnabled(false);
     }
 
     /**
@@ -198,7 +200,6 @@ public class RekamPasien extends javax.swing.JFrame {
 
         input_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         input_button.setText("input data");
-        input_button.setEnabled(false);
         input_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 input_buttonActionPerformed(evt);
@@ -215,7 +216,6 @@ public class RekamPasien extends javax.swing.JFrame {
 
         Hapus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Hapus.setText("Hapus");
-        Hapus.setEnabled(false);
         Hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HapusActionPerformed(evt);
@@ -564,11 +564,11 @@ public class RekamPasien extends javax.swing.JFrame {
     }
     private Frame_petugas Menuowner;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Hapus;
+    public static javax.swing.JButton Hapus;
     private javax.swing.JButton exit_button;
     public static javax.swing.JTextField idpasienTF;
     public static javax.swing.JTextField idpetugasTF;
-    private javax.swing.JButton input_button;
+    public static javax.swing.JButton input_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;

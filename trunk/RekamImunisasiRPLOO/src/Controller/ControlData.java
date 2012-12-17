@@ -253,7 +253,7 @@ public class ControlData {
         if (result.next()) {
             imun = result.getString(1);
         }
-        if (minggu < 4) {
+        if (minggu <= 4) {
             return imun = "1";
         }
         conn.commit();

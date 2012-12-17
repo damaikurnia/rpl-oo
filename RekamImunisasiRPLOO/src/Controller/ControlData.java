@@ -444,7 +444,6 @@ public class ControlData {
         result = stmt.executeQuery();
         if (result.next()) {
             cari = Integer.parseInt(result.getString(1)) + 1;
-            System.out.println(cari);
         }
         conn.commit();
         return String.valueOf(cari);

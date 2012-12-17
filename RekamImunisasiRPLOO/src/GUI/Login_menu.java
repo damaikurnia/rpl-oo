@@ -230,49 +230,61 @@ public class Login_menu extends javax.swing.JFrame {
         String id = usernameTF.getText();
         String passwd = password_TF.getText();
         if (PetugasRB.isSelected()) {
-            try {
-                boolean cek = ControlLogin.getKoneksi().LoginPetugas(id, passwd);
-                if (cek == true) {
-                    Frame_petugas FP = new Frame_petugas();
-                    FP.setVisible(true);
-                    emptyField();
+            if (usernameTF.getText().equals("") && password_TF.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Username dan Password belum terisi.");
+            } else {
+                try {
+                    boolean cek = ControlLogin.getKoneksi().LoginPetugas(id, passwd);
+                    if (cek == true) {
+                        Frame_petugas FP = new Frame_petugas();
+                        FP.setVisible(true);
+                        emptyField();
 //                    FP.setMenuowner(this);
 //                    FP.setMenuowner(this);
-                    String nama=ControlData.getKoneksi().cariPegawai(id);
-                    FP.label_petugas.setText(nama);
-                    this.dispose();
+                        String nama = ControlData.getKoneksi().cariPegawai(id);
+                        FP.label_petugas.setText(nama);
+                        this.dispose();
 //                    this.setEnabled(false);
 
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Username dan Password salah.");
-                    emptyField();
-                    usernameTF.requestFocus();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Username dan Password Petugas salah.");
+                        emptyField();
+                        usernameTF.requestFocus();
 
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(Login_menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(Login_menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if ((bidan_RB.isSelected())) {
+            if (usernameTF.getText().equals("") && password_TF.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Username dan Password belum terisi.");
+            } else {
+                try {
+                    boolean cek = ControlLogin.getKoneksi().LoginBidan(id, passwd);
+                    if (cek == true) {
+                        Frame_bidan FP = new Frame_bidan();
+                        FP.setVisible(true);
+                        emptyField();
+//                    FP.setMenuowner(this);
+                        emptyField();
+//                    FP.setMenuowner(this);
+                        this.dispose();
+                        String nama = ControlData.getKoneksi().cariBidan(id);
+                        FP.label_Bidan.setText(nama);
+//                    this.setEnabled(false);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Username dan Password Bidan salah.");
+                        emptyField();
+                        usernameTF.requestFocus();
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(Login_menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
-            try {
-                boolean cek = ControlLogin.getKoneksi().LoginBidan(id, passwd);
-                if (cek == true) {
-                    Frame_bidan FP = new Frame_bidan();
-                    FP.setVisible(true);
-                    emptyField();
-//                    FP.setMenuowner(this);
-                    emptyField();
-//                    FP.setMenuowner(this);
-                    this.dispose();
-                    String nama=ControlData.getKoneksi().cariBidan(id);
-                    FP.label_Bidan.setText(nama);
-//                    this.setEnabled(false);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Username dan Password salah.");
-                    emptyField();
-                    usernameTF.requestFocus();
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(Login_menu.class.getName()).log(Level.SEVERE, null, ex);
+            if (usernameTF.getText().equals("") && password_TF.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Username dan Password belum terisi.");
             }
         }
     }//GEN-LAST:event_masuk_buttonActionPerformed
@@ -285,10 +297,14 @@ public class Login_menu extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       /* Set the Nimbus look and feel */
+        /*
+         * Set the Nimbus look and feel
+         */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -308,6 +324,7 @@ public class Login_menu extends javax.swing.JFrame {
         }
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new Login_menu().setVisible(true);
             }

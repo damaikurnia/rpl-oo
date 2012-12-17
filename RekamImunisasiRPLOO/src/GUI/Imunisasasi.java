@@ -81,7 +81,6 @@ public class Imunisasasi extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         idBidanTF = new javax.swing.JTextField();
         keluar_button = new javax.swing.JButton();
-        cetak_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -232,8 +231,8 @@ public class Imunisasasi extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         buka_imunisasi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -285,14 +284,6 @@ public class Imunisasasi extends javax.swing.JFrame {
             }
         });
 
-        cetak_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cetak_button.setText("Cetak");
-        cetak_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cetak_buttonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -315,8 +306,7 @@ public class Imunisasasi extends javax.swing.JFrame {
                     .addGap(10, 45, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(InternalCetak, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cetak_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(InternalCetak, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 18, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -337,13 +327,11 @@ public class Imunisasasi extends javax.swing.JFrame {
                 .addContainerGap(349, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(214, 222, Short.MAX_VALUE)
+                    .addContainerGap(222, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(InternalCetak, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(cetak_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 9, Short.MAX_VALUE)))
+                        .addComponent(InternalCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 33, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -380,10 +368,6 @@ public class Imunisasasi extends javax.swing.JFrame {
             lm.setVisible(true);
         }
     }//GEN-LAST:event_keluar_buttonActionPerformed
-
-    private void cetak_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetak_buttonActionPerformed
-        InternalCetak.setVisible(true);
-    }//GEN-LAST:event_cetak_buttonActionPerformed
 
     private void radio_nowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_nowActionPerformed
         if (radio_now.isSelected()) {
@@ -534,7 +518,6 @@ public class Imunisasasi extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame InternalCetak;
     private javax.swing.JButton buka_imunisasi;
-    private javax.swing.JButton cetak_button;
     private com.toedter.calendar.JDateChooser dateAkhir;
     private com.toedter.calendar.JDateChooser date_imun;
     private com.toedter.calendar.JDateChooser dateawal;

@@ -40,7 +40,7 @@ public class Imunisasasi extends javax.swing.JFrame {
         bg.add(radio_now);
         bg.add(radio_rentang);
         awal();
-        GregorianCalendar gc=new GregorianCalendar();
+        GregorianCalendar gc = new GregorianCalendar();
         dateAkhir.setDate(gc.getTime());
         date_imun.setDate(gc.getTime());
         dateawal.setDate(gc.getTime());
@@ -70,7 +70,7 @@ public class Imunisasasi extends javax.swing.JFrame {
         radio_rentang = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelImun = new javax.swing.JTable();
         buka_imunisasi = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -198,7 +198,7 @@ public class Imunisasasi extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 255, 102));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imunisasi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 24), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelImun.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -210,10 +210,15 @@ public class Imunisasasi extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "id Anak", "nama Anak", "jenis Imunisasi", "Tanggal Imunisasi"
+                "idRekamImunisasi", "nama Anak", "jenis Imunisasi", "Tanggal Imunisasi"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabelImun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelImunMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelImun);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -307,16 +312,11 @@ public class Imunisasasi extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(10, 45, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(10, 39, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(10, 780, Short.MAX_VALUE)
-                            .addComponent(InternalCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(30, 705, Short.MAX_VALUE)
-                            .addComponent(cetak_button, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(InternalCetak, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cetak_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 18, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -337,13 +337,10 @@ public class Imunisasasi extends javax.swing.JFrame {
                 .addContainerGap(349, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(214, 222, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(214, 222, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(140, 148, Short.MAX_VALUE)
-                            .addComponent(InternalCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(InternalCetak, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addComponent(cetak_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 9, Short.MAX_VALUE)))
@@ -409,7 +406,7 @@ public class Imunisasasi extends javax.swing.JFrame {
     }//GEN-LAST:event_radio_rentangActionPerformed
 
     private void ok_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_buttonActionPerformed
-       if (radio_now.isSelected()) {
+        if (radio_now.isSelected()) {
             try {
                 Connection kon = null;
                 String reportSource = "";
@@ -430,7 +427,7 @@ public class Imunisasasi extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(Imunisasasi.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(radio_rentang.isSelected()){
+        } else if (radio_rentang.isSelected()) {
             try {
                 Connection kon = null;
                 String reportSource = "";
@@ -438,8 +435,8 @@ public class Imunisasasi extends javax.swing.JFrame {
                 Date tglawal = datenow.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
                 String awal = sdf.format(tglawal);
-                Date tglAkhir=dateAkhir.getDate();
-                String akhir=sdf.format(tglAkhir);
+                Date tglAkhir = dateAkhir.getDate();
+                String akhir = sdf.format(tglAkhir);
                 reportSource = "./reports/LaporanImunisasi.jasper";
                 Map<String, Object> params = new HashMap<String, Object>();
                 params.put("tanggalAwal", awal);
@@ -455,17 +452,36 @@ public class Imunisasasi extends javax.swing.JFrame {
                 Logger.getLogger(Imunisasasi.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       InternalCetak.setVisible(false);
+        InternalCetak.setVisible(false);
     }//GEN-LAST:event_ok_buttonActionPerformed
+
+    private void tabelImunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelImunMouseClicked
+        try {
+            int i = tabelImun.getSelectedRow();
+            String kodeimun = tabelImun.getValueAt(i, 0).toString();
+            String nama = tabelImun.getValueAt(i, 1).toString();
+            String imun = tabelImun.getValueAt(i, 2).toString();
+            int a = JOptionPane.showConfirmDialog(rootPane,
+                    " imunisasi pada " + nama + " \n dengan jenis imunisasi "
+                    + imun + " \n lanjut imunisasi ?",
+                    "information", JOptionPane.YES_NO_OPTION);
+            if (a == 0) {
+                ControlData.getKoneksi().updateBidan(idBidanTF.getText(), kodeimun);
+            }
+            tampilTable();
+        } catch (Exception ex) {
+            Logger.getLogger(Imunisasasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tabelImunMouseClicked
 
     private void tampilTable() {
         Date tgl = date_imun.getDate();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
         String tanggal = sdf.format(tgl);
         try {
-            List<RekamImunisasiData> lkat = ControlData.getKoneksi().getAllImunisasi(tanggal);
+            List<RekamImunisasiData> lkat = ControlData.getKoneksi().getAllImunisasiSekarang(tanggal);
             ImunisasiSekarang KTM = new ImunisasiSekarang(lkat);
-            jTable1.setModel(KTM);
+            tabelImun.setModel(KTM);
         } catch (Exception ex) {
             Logger.getLogger(Registrasi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -537,10 +553,10 @@ public class Imunisasasi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton keluar_button;
     private javax.swing.JButton ok_button;
     private javax.swing.JRadioButton radio_now;
     private javax.swing.JRadioButton radio_rentang;
+    private javax.swing.JTable tabelImun;
     // End of variables declaration//GEN-END:variables
 }

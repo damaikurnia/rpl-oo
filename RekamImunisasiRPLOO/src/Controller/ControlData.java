@@ -316,13 +316,14 @@ public class ControlData {
         return pasien;
     }
 
-    public List<RekamImunisasiData> getAllImunisasi(String date) throws SQLException {
+    public List<RekamImunisasiData> getAllImunisasiSekarang(String date) throws SQLException {
         PreparedStatement psmt = null;
         ResultSet rset = null;
         conn.setAutoCommit(false);
-        String query = "SELECT r.idpasien,p.namapasien,i.namaimunisasi,DATE_FORMAT(r.tanggal, '%d-%M-%Y') "
+        String query = "SELECT r.idrekamimunisasi,p.namapasien,i.namaimunisasi,DATE_FORMAT(r.tanggal, '%d-%M-%Y') "
                 + " from rekamimunisasi r,pasien p,imunisasi i"
-                + " where r.idpasien= p.idpasien and r.jenisimun=i.idimunisasi  and r.tanggal=? ";
+                + " where r.idbidan= 'KOSONG' and"
+                + " r.idpasien= p.idpasien and r.jenisimun=i.idimunisasi  and r.tanggal=? ";
         psmt = conn.prepareStatement(query);
         psmt.setString(1, date);
         rset = psmt.executeQuery();
@@ -330,17 +331,47 @@ public class ControlData {
         while (rset.next()) {
             RekamImunisasiData pasdt = new RekamImunisasiData();
             PasienData pd = new PasienData();
-            pd.setIdPasien(rset.getString(1));
+//            pd.setIdPasien(rset.getString(1));
             pd.setNamaPasien(rset.getString(2));
             pasdt.setPasien(pd);
             ImunisasiDT idt = new ImunisasiDT();
             idt.setNamaImunisasi(rset.getString(3));
             pasdt.setImun(idt);
+            pasdt.setIdRekamImun(rset.getString(1));
             pasdt.setTanggal(rset.getString(4));
             pasien.add(pasdt);
         }
         conn.commit();
         return pasien;
+    }
+    
+     public void updateBidan(String kode,String rm) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+            conn.setAutoCommit(false);
+            String query = "update rekamimunisasi set idbidan=? where idrekamimunisasi=? ";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, kode);
+             stmt.setString(2, rm);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException se) {
+            conn.rollback();
+            throw se;
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (Exception e) {
+                try {
+                    throw e;
+                } catch (Exception ex) {
+                    Logger.getLogger(ControlData.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     public List<RekamImunisasiData> getAllKirimSMS(String date) throws SQLException {

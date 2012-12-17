@@ -24,7 +24,7 @@ public class Registrasi_baru extends javax.swing.JFrame {
      */
     public Registrasi_baru() {
         initComponents();
-        ButtonGroup BG=new ButtonGroup();
+        ButtonGroup BG = new ButtonGroup();
         BG.add(L_radio);
         BG.add(P_radio);
     }
@@ -256,9 +256,9 @@ public class Registrasi_baru extends javax.swing.JFrame {
         String tanggal = sdf.format(tgl);
         String jenisKel = "";
         if (L_radio.isSelected()) {
-            jenisKel="L";
-        } else if(P_radio.isSelected()) {
-            jenisKel="P";
+            jenisKel = "L";
+        } else if (P_radio.isSelected()) {
+            jenisKel = "P";
         }
         String namaOrtu = namaOrtu_TF.getText();
         String notelp = noTelpOrtu_TF.getText();
@@ -295,8 +295,10 @@ public class Registrasi_baru extends javax.swing.JFrame {
     }//GEN-LAST:event_simpan_buttonActionPerformed
 
     private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
+        
         this.dispose();
-        Registrasi reg=new Registrasi();
+        Registrasi reg = new Registrasi();
+        Registrasi.idpetugasTF.setText(idpetugasTF.getText());
         reg.setVisible(true);
     }//GEN-LAST:event_keluar_buttonActionPerformed
 
@@ -321,7 +323,6 @@ public class Registrasi_baru extends javax.swing.JFrame {
     }//GEN-LAST:event_namaPasien_TFKeyReleased
 
     private void tanggalLahir_DCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tanggalLahir_DCMouseClicked
-
     }//GEN-LAST:event_tanggalLahir_DCMouseClicked
 
     private void tanggalLahir_DCPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalLahir_DCPropertyChange

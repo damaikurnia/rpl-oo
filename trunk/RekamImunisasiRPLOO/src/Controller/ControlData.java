@@ -331,7 +331,6 @@ public class ControlData {
         while (rset.next()) {
             RekamImunisasiData pasdt = new RekamImunisasiData();
             PasienData pd = new PasienData();
-//            pd.setIdPasien(rset.getString(1));
             pd.setNamaPasien(rset.getString(2));
             pasdt.setPasien(pd);
             ImunisasiDT idt = new ImunisasiDT();
@@ -410,7 +409,6 @@ public class ControlData {
                 + " from rekamimunisasi r,pasien p,imunisasi i"
                 + " where r.idbidan <> 'KOSONG' and r.idpasien= p.idpasien  and r.jenisimun=i.idimunisasi and "
                 + "r.tanggal=? ";
-//        and r.jenisimun=i.idimunisasi
         psmt = conn.prepareStatement(query);
         psmt.setString(1, date);
         rset = psmt.executeQuery();

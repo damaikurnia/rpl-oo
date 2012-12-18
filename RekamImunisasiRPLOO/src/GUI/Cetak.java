@@ -8,6 +8,7 @@ import Connection.ConnMySql;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -34,6 +35,11 @@ public class Cetak extends javax.swing.JFrame {
         ButtonGroup bg = new ButtonGroup();
         bg.add(radio_now);
         bg.add(radio_rentang);
+        GregorianCalendar gc=new GregorianCalendar();
+        dateAkhir.setDate(gc.getTime());
+        dateawal.setDate(gc.getTime());
+        datenow.setDate(gc.getTime());
+        
     }
 
     /**
@@ -194,12 +200,9 @@ public class Cetak extends javax.swing.JFrame {
                 Date tglawal = datenow.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
                 String awal = sdf.format(tglawal);
-                Date tglAkhir = dateAkhir.getDate();
-                String akhir = sdf.format(tglAkhir);
-                reportSource = "./reports/LaporanImunisasi.jasper";
+                reportSource = "./reports/LaporanImunisasiHariIni.jasper";
                 Map<String, Object> params = new HashMap<String, Object>();
-                params.put("tanggalAwal", awal);
-                params.put("tanggalAkhir", akhir);
+                params.put("tglAwal", awal);
                 try {
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, params, kon);
                     JasperViewer.viewReport(jasperPrint, false);
@@ -215,15 +218,15 @@ public class Cetak extends javax.swing.JFrame {
                 Connection kon = null;
                 String reportSource = "";
                 kon = ConnMySql.getConnections();
-                Date tglawal = datenow.getDate();
+                Date tglawal = dateawal.getDate();
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
                 String awal = sdf.format(tglawal);
                 Date tglAkhir = dateAkhir.getDate();
                 String akhir = sdf.format(tglAkhir);
                 reportSource = "./reports/LaporanImunisasi.jasper";
                 Map<String, Object> params = new HashMap<String, Object>();
-                params.put("tanggalAwal", awal);
-                params.put("tanggalAkhir", akhir);
+                params.put("tglAwal", awal);
+                params.put("tglAkhir", akhir);
                 try {
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reportSource, params, kon);
                     JasperViewer.viewReport(jasperPrint, false);
@@ -257,6 +260,7 @@ public class Cetak extends javax.swing.JFrame {
 
     private void keluar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluar_buttonActionPerformed
         this.dispose();
+        
     }//GEN-LAST:event_keluar_buttonActionPerformed
 
     /**

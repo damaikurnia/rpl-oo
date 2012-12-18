@@ -484,7 +484,8 @@ public class Frame_petugas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        InternalCetak.setVisible(true);
+        Cetak ctk=new Cetak();
+        ctk.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     @Override
     public void disable() {

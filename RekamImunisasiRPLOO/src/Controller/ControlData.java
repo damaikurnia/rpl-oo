@@ -408,7 +408,7 @@ public class ControlData {
         conn.setAutoCommit(false);
         String query = "SELECT r.idpasien,p.namapasien,p.namaortu,p.telportu,i.namaimunisasi "
                 + " from rekamimunisasi r,pasien p,imunisasi i"
-                + " where r.idpasien= p.idpasien  and r.jenisimun=i.idimunisasi and "
+                + " where r.idbidan <> 'KOSONG' and r.idpasien= p.idpasien  and r.jenisimun=i.idimunisasi and "
                 + "r.tanggal=? ";
 //        and r.jenisimun=i.idimunisasi
         psmt = conn.prepareStatement(query);

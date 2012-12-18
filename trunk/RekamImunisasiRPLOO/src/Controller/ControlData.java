@@ -5,7 +5,7 @@
 package Controller;
 
 import Connection.ConnMySql;
-import Data.ImunisasiDT;
+import Data.ImunisasiData;
 import Data.PasienData;
 import Data.RekamImunisasiData;
 import java.sql.Connection;
@@ -193,7 +193,7 @@ public class ControlData {
         while (rset.next()) {
             RekamImunisasiData pasdt = new RekamImunisasiData();
             PasienData pd = new PasienData();
-            ImunisasiDT imun = new ImunisasiDT();
+            ImunisasiData imun = new ImunisasiData();
             pd.setNamaPasien(rset.getString(1));
             pd.setNamaOrangTua(rset.getString(3));
             pasdt.setPasien(pd);
@@ -333,7 +333,7 @@ public class ControlData {
             PasienData pd = new PasienData();
             pd.setNamaPasien(rset.getString(2));
             pasdt.setPasien(pd);
-            ImunisasiDT idt = new ImunisasiDT();
+            ImunisasiData idt = new ImunisasiData();
             idt.setNamaImunisasi(rset.getString(3));
             pasdt.setImun(idt);
             pasdt.setIdRekamImun(rset.getString(1));
@@ -421,7 +421,7 @@ public class ControlData {
             pd.setNamaOrangTua(rset.getString(3));
             pd.setNotelpOrtu(rset.getString(4));
             pasdt.setPasien(pd);
-            ImunisasiDT idt = new ImunisasiDT();
+            ImunisasiData idt = new ImunisasiData();
             idt.setNamaImunisasi(rset.getString(5));
             pasdt.setImun(idt);
             pasien.add(pasdt);

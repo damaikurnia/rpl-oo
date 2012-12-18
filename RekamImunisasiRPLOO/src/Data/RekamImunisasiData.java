@@ -12,7 +12,7 @@ public class RekamImunisasiData {
     private PasienData pasien;
     private String idRekamImun;
     private String tanggal;
-    private ImunisasiDT imun;
+    private ImunisasiData imun;
     private int beratBadan;
     private int tinggiBadan;
     private String idBidan;
@@ -37,14 +37,14 @@ public class RekamImunisasiData {
     /**
      * @return the jenisImun
      */
-    public ImunisasiDT getImun() {
+    public ImunisasiData getImun() {
         return imun;
     }
 
     /**
      * @param jenisImun the jenisImun to set
      */
-    public void setImun(ImunisasiDT jenisImun) {
+    public void setImun(ImunisasiData jenisImun) {
         this.imun = jenisImun;
     }
 

@@ -8,7 +8,7 @@ package Data;
  *
  * @author a9uszT
  */
-public class ImunisasiDT {
+public class ImunisasiData {
     private String idImunisasi;
     private String namaImunisasi;
     private int minggu;

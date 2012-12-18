@@ -5,7 +5,7 @@
 package GUI;
 
 import Controller.ControlData;
-import Data.ImunisasiDT;
+import Data.ImunisasiData;
 import Data.PasienData;
 import Data.RekamImunisasiData;
 import java.text.SimpleDateFormat;
@@ -419,7 +419,7 @@ public class InputRekamImunisasi extends javax.swing.JFrame {
                 RI.setPasien(pd);
                 RI.setIdBidan(idbidan);
                 RI.setTanggal(tanggal);
-                ImunisasiDT idt = new ImunisasiDT();
+                ImunisasiData idt = new ImunisasiData();
                 idt.setIdImunisasi(imunID);
                 RI.setImun(idt);
                 RI.setIdRekamImun(idrekam);
